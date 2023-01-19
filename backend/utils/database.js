@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 
-const DB_NAME = 'task4';
+const DB_NAME = 'users';
 const USER_NAME = 'root';
-const PASSWORD = '123456';
+const PASSWORD = 'mysqlnodejs';
 
 const db = new Sequelize(DB_NAME, USER_NAME, PASSWORD, {
     host: 'localhost',

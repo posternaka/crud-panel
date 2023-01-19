@@ -19,6 +19,10 @@ const User = db.define('users',
             type: DataTypes.STRING,
             allowNull: false,
         },
+        status_user: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         done: {
             type: DataTypes.BOOLEAN,
             allowNull: false
