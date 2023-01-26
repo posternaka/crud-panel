@@ -1,4 +1,5 @@
 import User from '../models/UserModel.js';
+import moment from 'moment';
 
 export const getUsers = async(req, res) => {
     try {
@@ -12,13 +13,26 @@ export const getUsers = async(req, res) => {
     }
 };
 
-export const getUser = async(req, res) => {
+export const signIn = async(req, res) => {
     try {
         const user = await User.findOne({
-            where: {
-                id: req.params.id
-            }
+                where: {
+                    name: req.body.name,
+                    password: req.body.password
+                },
+                raw: true
         });
+        if (user && user.status_user !== 'Block') {
+            await User.update(
+                {
+                    time_was: moment.utc().valueOf()
+                }, 
+                {
+                    where: {
+                        id: user.id
+                    },
+            });
+        }
         res.status(200).json(user);
     } catch (error) {
         console.log(error);
@@ -30,8 +44,8 @@ export const getUser = async(req, res) => {
 
 export const createUser = async(req, res) => {
     try {
-        await User.create(req.body);
-        res.status(201).json({message: 'User created'});
+        const result = await User.create(req.body);
+        res.status(201).json(result);
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -40,14 +54,13 @@ export const createUser = async(req, res) => {
     }
 };
 
-export const updateUser = async(req, res) => {
+
+export const updateUsers = async(req, res) => {
     try {
-        await User.update(req.body, {
-            where: {
-                id: req.params.id
-            }
+        await User.bulkCreate(req.body, {
+            updateOnDuplicate: ['status_user']
         });
-        res.status(200).json({message: 'User updated'});
+        res.status(200).json({message: 'Users updated'});
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -56,14 +69,14 @@ export const updateUser = async(req, res) => {
     }
 };
 
-export const deleteUser = async(req, res) => {
+export const deleteUsers = async(req, res) => {
     try {
         await User.destroy({
             where: {
-                id: req.params.id
-            }
+                id: req.body
+            },
         });
-        res.status(200).json({message: 'User deleted'});
+        res.status(200).json({message: 'Users deleted'});
     } catch (error) {
         console.log(error);
         res.status(500).json({

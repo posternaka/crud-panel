@@ -11,22 +11,14 @@ const User = db.define('users',
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        status_user: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        done: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        },
+        name: DataTypes.STRING,
+        password: DataTypes.STRING,
+        email: DataTypes.STRING,
+        status_user: DataTypes.STRING,
+        time_was: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        }
     }
 );
 
