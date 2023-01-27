@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import { URL } from './globalconsts';
+
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from "./pages/Registration";
@@ -25,7 +27,7 @@ const App = () => {
 
     const getUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/users');
+        const response = await axios.get(URL);
         setUsers(response.data);
       } catch (error) {
         console.log(error);
