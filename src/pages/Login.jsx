@@ -13,7 +13,6 @@ const Login = ({ users, getUsers, setAccess }) => {
     const saveUser = async (e) => {
         e.preventDefault();
         const user = await signIn(name, password);
-        // const user = users.find(user => user.name === name && user.password === password);
         if(!user) {
             return navigate('/registration');
         } else if (user.status_user === 'Block') {

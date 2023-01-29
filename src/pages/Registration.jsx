@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
-
+import { URL } from '../globalconsts';
 import Button from '../components/UI/button/Button';
 
 const Registration = ({ getUsers, setAccess }) => {
@@ -14,7 +14,7 @@ const Registration = ({ getUsers, setAccess }) => {
     const saveUser = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/users', {
+            const response = await axios.post(URL, {
                 name,
                 email,
                 password,
