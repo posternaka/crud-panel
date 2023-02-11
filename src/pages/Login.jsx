@@ -21,7 +21,7 @@ const Login = ({ users, getUsers, setAccess }) => {
         } else if(user.status_user === 'Unblock') {
             await getUsers();
             setAccess(user);
-            return navigate('/'); 
+            return navigate('/users'); 
         }
     }
 

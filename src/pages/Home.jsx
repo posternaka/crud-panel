@@ -11,7 +11,7 @@ import { STATUS_UNBLOCK, STATUS_BLOCK, STATUS_DELETE } from '../globalconsts';
 
 const UserList = ({ users, user, getUsers }) => {
     const navigate = useNavigate();
-    const signOut = () => navigate('/login');
+    const signOut = () => navigate('/');
     const [choice, setChoice] = useState([]);
 
     const  getMethods = async (current) => {

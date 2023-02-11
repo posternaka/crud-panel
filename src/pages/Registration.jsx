@@ -22,7 +22,7 @@ const Registration = ({ getUsers, setAccess }) => {
             });
             await getUsers();
             setAccess(response.data);
-            navigate('/');
+            navigate('/users');
         } catch (error) {
             console.log(error);
         }
@@ -73,7 +73,7 @@ const Registration = ({ getUsers, setAccess }) => {
                     </div>
                     <div className="field mt-5">
                         <Button type="submit" className="mr-5 button is-success is-light">Sign Up</Button>
-                        <Link to="/login" className="button is-info is-light">Go Back</Link>
+                        <Link to="/" className="button is-info is-light">Go Back</Link>
                     </div>
                 </form>
             </div>

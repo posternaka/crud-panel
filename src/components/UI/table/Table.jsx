@@ -1,13 +1,6 @@
-import { useState } from 'react';
 import { formatDate } from '../../../utils/date';
 
 const Table = ({ user_id, users, choice, setChoice }) => {
-    
-    const [checkbox, setCheckbox] = useState();
-    const [allCheckboxes, setAllCheckboxes] = useState();
-
-
-
     const check = (id, e) => {
         if (e.target.checked) {
             setChoice([...choice, id]);
@@ -33,7 +26,7 @@ const Table = ({ user_id, users, choice, setChoice }) => {
                         <p>select all/ nobody</p>
                         <input 
                             type="checkbox"
-                            onClick={(e) => multiCheck(e)}
+                            onChange={(e) => multiCheck(e)}
                             checked={users.length === choice.length}
                         />
                     </th>
@@ -52,7 +45,7 @@ const Table = ({ user_id, users, choice, setChoice }) => {
                             <td>
                                 <input
                                     type="checkbox"
-                                    onClick={(e) => check(user.id, e)}
+                                    onChange={(e) => check(user.id, e)}
                                     checked={choice.includes(user.id)}
                                 />
                             </td>
